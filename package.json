@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.2.0",
+    "@stripe/stripe-js": "^1.11.0",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
