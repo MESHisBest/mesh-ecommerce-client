@@ -11,6 +11,7 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
 import AllProducts from './components/AllProducts/AllProducts'
+// import CarouselProducts from './components/AllProducts/CarouselProducts'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -60,8 +61,6 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          {/* Show all Products */}
-          <Route path='/all-products' component={AllProducts} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
@@ -73,6 +72,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/create-purchase' render={() => (
             <PurchaseCreate msgAlert={this.msgAlert} user={user} />
           )} />
+        </main>
+        {/* Show all Products */}
+        <main>
+          {/* <CarouselProducts /> */}
+          <AllProducts />
         </main>
       </Fragment>
     )
