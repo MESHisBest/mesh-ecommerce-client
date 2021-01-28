@@ -70,7 +70,7 @@ class PurchaseCreate extends Component {
     }
     return (
       <div>
-        <h3>Create Movie</h3>
+        <h3>Hello</h3>
         <PurchaseForm
           movie={purchase}
           handleChange={this.handleChange}
