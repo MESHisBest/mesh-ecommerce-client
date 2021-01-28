@@ -7,14 +7,17 @@ import products from '../../data/products-list'
 
 const cardContainerLayout = {
   display: 'flex',
-  justifyContent: 'center',
-  flexFlow: 'row wrap'
+  justifyContent: 'space-around',
+  flexFlow: 'row wrap',
+  flexBasis: 'auto',
+  margin: '10px',
+  padding: '10px'
 }
 
 const AllProducts = () => {
   const productCard = products.map(product => {
     return (
-      <CardDeck key={products.id} style={{ width: '18rem' }} >
+      <CardDeck key={products.id} style={{ width: '25rem' }} >
         <Card>
           <Card.Img variant="top" src={product.pictureUrl} style={{ width: '100%', margin: 'auto', padding: 'auto' }}/>
           <Card.Body>

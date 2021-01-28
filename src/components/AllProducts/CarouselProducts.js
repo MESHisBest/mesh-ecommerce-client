@@ -3,10 +3,17 @@ import Carousel from 'react-bootstrap/Carousel'
 import products from '../../data/products-list'
 
 const cardContainerLayout = {
-  width: '18rem',
-  display: 'flex',
-  justifyContent: 'center',
-  flexFlow: 'row wrap'
+  width: '99%',
+  height: '25%',
+  // borderColor: 'blue',
+  borderRadius: '25px',
+  border: '2px solid blue',
+  padding: '15px',
+  margin: '10px'
+}
+const dblock = {
+  width: '100%',
+  height: '550px'
 }
 
 const CarouselProducts = () => {
@@ -15,7 +22,8 @@ const CarouselProducts = () => {
       <Carousel.Item>
         <img
           src={products[0].pictureUrl}
-          className="d-block w-100"
+          // className="d-block w-100"
+          style={dblock}
           alt="First slide"
         />
         <Carousel.Caption>
@@ -25,7 +33,8 @@ const CarouselProducts = () => {
       <Carousel.Item>
         <img
           src={products[1].pictureUrl}
-          className="d-block w-100"
+          // className="d-block w-100"
+          style={dblock}
           alt="Second slide"
         />
         <Carousel.Caption>
@@ -34,7 +43,8 @@ const CarouselProducts = () => {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          // className="d-block w-100"
+          style={dblock}
           src={products[2].pictureUrl}
           alt="Third slide"
         />
@@ -43,7 +53,15 @@ const CarouselProducts = () => {
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
-
   )
 }
+// <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+//   <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+//   <span className="sr-only">Previous</span>
+// </a>
+//
+// <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+//   <span className="carousel-control-next-icon" aria-hidden="true"></span>
+//   <span className="sr-only">Next</span>
+// </a>
 export default CarouselProducts
