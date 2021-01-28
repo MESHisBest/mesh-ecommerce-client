@@ -74,9 +74,12 @@ class App extends Component {
           )} />
         </main>
         {/* Show all Products */}
-        <CarouselProducts />
-        <AllProducts />
+        <div className='green'>
+          <CarouselProducts />
+          <AllProducts />
+        </div>
       </Fragment>
+
     )
   }
 }
