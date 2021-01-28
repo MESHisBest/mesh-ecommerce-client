@@ -9,8 +9,9 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
+// import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
 import AllProducts from './components/AllProducts/AllProducts'
+import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
 import CarouselProducts from './components/AllProducts/CarouselProducts'
 class App extends Component {
   constructor (props) {
@@ -68,15 +69,24 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
 
-          {/* Create a purchase */}
-          <AuthenticatedRoute user={user} path='/create-purchase' render={() => (
-            <PurchaseCreate msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
+            <PurchaseIndex msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
         {/* Show all Products */}
         <div className='green'>
-          <CarouselProducts />
-          <AllProducts />
+          <Route exact path='/' render={() => (
+            <Fragment>
+              <CarouselProducts />
+              {/* <AllProducts /> */}
+              {/* <AuthenticatedRoute user={user} exact path='/' render={() => (
+                <AllProducts user={user} />
+              )} /> */}
+            </Fragment>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/' render={() => (
+            <AllProducts user={user} />
+          )} />
         </div>
       </Fragment>
 
