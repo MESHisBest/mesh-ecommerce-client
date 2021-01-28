@@ -11,7 +11,7 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
 import AllProducts from './components/AllProducts/AllProducts'
-// import CarouselProducts from './components/AllProducts/CarouselProducts'
+import CarouselProducts from './components/AllProducts/CarouselProducts'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -74,10 +74,8 @@ class App extends Component {
           )} />
         </main>
         {/* Show all Products */}
-        <main>
-          {/* <CarouselProducts /> */}
-          <AllProducts />
-        </main>
+        <CarouselProducts />
+        <AllProducts />
       </Fragment>
     )
   }
