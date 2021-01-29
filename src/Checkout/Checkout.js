@@ -1,7 +1,7 @@
 import React from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 
-export const CheckoutForm = () => {
+const CheckoutForm = () => {
   const stripe = useStripe()
   const elements = useElements()
 
