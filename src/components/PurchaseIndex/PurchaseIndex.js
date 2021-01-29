@@ -17,8 +17,8 @@ class PurchasesIndex extends Component {
     const { msgAlert, user } = this.props
 
     purchaseIndex(user)
-      // .then(res => this.setState({ purchases: res.data.purchases }))
-      .then(res => console.log(res))
+      .then(res => this.setState({ purchases: res.data.purchases }))
+      // .then(res => console.log(res))
       .then(() => msgAlert({
         heading: 'Loaded Purchases Successfully',
         message: 'All purchases retrieved. Click on one to go to its page.',
