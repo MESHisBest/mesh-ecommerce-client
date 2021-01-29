@@ -10,7 +10,8 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 // import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
-import AllProducts from './components/AllProducts/AllProducts'
+import UnAuthProducts from './components/AllProducts/UnAuthProductCard'
+import AuthProducts from './components/AllProducts/AuthProductCard'
 import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
 import CarouselProducts from './components/AllProducts/CarouselProducts'
 class App extends Component {
@@ -78,14 +79,14 @@ class App extends Component {
           <Route exact path='/' render={() => (
             <Fragment>
               <CarouselProducts />
-              {/* <AllProducts /> */}
-              {/* <AuthenticatedRoute user={user} exact path='/' render={() => (
-                <AllProducts user={user} />
-              )} /> */}
+              <UnAuthProducts />
             </Fragment>
           )} />
-          <AuthenticatedRoute user={user} exact path='/' render={() => (
-            <AllProducts user={user} />
+          <AuthenticatedRoute user={user} exact path='/auth-home' render={() => (
+            <Fragment>
+              <CarouselProducts />
+              <AuthProducts user={user} />
+            </Fragment>
           )} />
         </div>
       </Fragment>
