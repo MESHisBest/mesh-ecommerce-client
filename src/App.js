@@ -14,6 +14,7 @@ import UnAuthProducts from './components/AllProducts/UnAuthProductCard'
 import AuthProducts from './components/AllProducts/AuthProductCard'
 import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
 import CarouselProducts from './components/AllProducts/CarouselProducts'
+import Stripe from './Stripe/Stripe'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -73,6 +74,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
             <PurchaseIndex msgAlert={this.msgAlert} user={user} />
           )} />
+          <div className='App'>
+            <Stripe />
+          </div>
         </main>
         {/* Show all Products */}
         <div className='green'>
