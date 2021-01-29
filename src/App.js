@@ -12,6 +12,7 @@ import ChangePassword from './components/ChangePassword/ChangePassword'
 import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
 import AllProducts from './components/AllProducts/AllProducts'
 import CarouselProducts from './components/AllProducts/CarouselProducts'
+import Stripe from './Stripe/Stripe'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -72,6 +73,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/create-purchase' render={() => (
             <PurchaseCreate msgAlert={this.msgAlert} user={user} />
           )} />
+          <div className='App'>
+            <Stripe />
+          </div>
         </main>
         {/* Show all Products */}
         <CarouselProducts />
