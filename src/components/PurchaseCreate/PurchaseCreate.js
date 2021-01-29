@@ -10,8 +10,6 @@ class PurchaseCreate extends Component {
     this.state = {
       purchase: {
         name: '',
-        type: '',
-        price: '',
         picture_url: ''
       },
       // createdId will be null, until we successfully create a purchase
