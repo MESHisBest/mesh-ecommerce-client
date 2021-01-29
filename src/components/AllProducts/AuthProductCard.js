@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import { Link } from 'react-router-dom'
 import products from '../../data/products-list'
-// import purchaseCreate from './../../api/purchases'
+// import { purchaseCreate } from './../../api/purchases'
 
 const cardContainerLayout = {
   display: 'flex',
