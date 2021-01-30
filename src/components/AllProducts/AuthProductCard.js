@@ -1,6 +1,5 @@
 // imports
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import { Link } from 'react-router-dom'
@@ -27,11 +26,10 @@ const authProductCard = products.map(product => (
         <Card.Title>{product.price}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <Button variant="primary">Buy Now</Button>
         <Link to={{
           pathname: '/create-purchase',
           state: { product: product }
-        }} className='btn btn-primary'>TEST</Link>
+        }} className='btn btn-primary'>Buy Now</Link>
       </Card.Footer>
     </Card>
   </CardDeck>

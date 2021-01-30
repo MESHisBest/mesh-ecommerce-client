@@ -1,5 +1,5 @@
 // imports
-import React from 'react'
+import React, { Fragment } from 'react'
 // import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
@@ -25,17 +25,20 @@ const unAuthProductCard = products.map(product => (
         <Card.Title>{product.price}</Card.Title>
       </Card.Body>
       <Card.Footer>
-        <p>log in to purchase</p>
+        <p>Log in to purchase</p>
       </Card.Footer>
     </Card>
   </CardDeck>
 )
 )
 
-const UnAuthProducts = ({ user }) => (
-  <div style={cardContainerLayout}>
-    { unAuthProductCard }
-  </div>
+const UnAuthProducts = () => (
+  <Fragment>
+    <div style={cardContainerLayout}>
+      { unAuthProductCard }
+    </div>
+  </Fragment>
+
 )
 
 export default UnAuthProducts

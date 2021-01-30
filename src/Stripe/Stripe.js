@@ -12,11 +12,11 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 const Stripe = (props) => {
   const { product } = props.location.state
   return (
-    <Elements stripe={stripeTestPromise}>
+    <Elements className='checkout-form' stripe={stripeTestPromise}>
       <Fragment>
         <h2>{ product.name }</h2>
         <p>{ product.price }</p>
-        <img style={{ width: '20%', height: '20%' }} src={ product.pictureUrl } />
+        <img className='checkout-img' src={ product.pictureUrl } />
       </Fragment>
       <CheckoutForm product={product} />
     </Elements>
