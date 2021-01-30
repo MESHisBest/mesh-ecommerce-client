@@ -59,7 +59,7 @@ class App extends Component {
             deleteAlert={this.deleteAlert}
           />
         ))}
-        <main className="container">
+        <main>
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -76,12 +76,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
             <PurchaseIndex msgAlert={this.msgAlert} user={user} />
           )} />
-          {/* <div className='App'>
-            <Stripe />
-          </div> */}
         </main>
         {/* Show all Products */}
-        <div className='green'>
+        <section className='green'>
           <Route exact path='/' render={() => (
             <Fragment>
               <CarouselProducts />
@@ -99,9 +96,8 @@ class App extends Component {
               <Stripe user={user} />
             </Fragment>
           )} />
-        </div>
+        </section>
       </Fragment>
-
     )
   }
 }

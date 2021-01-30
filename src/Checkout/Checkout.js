@@ -34,7 +34,7 @@ function CheckoutForm (product) {
   }
 
   return (
-    <div className="container">
+    <div className="checkout-container">
       <StripeCheckout
         stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
         token={handleToken}
