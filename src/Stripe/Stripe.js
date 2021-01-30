@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import Checkout from './../Checkout/Checkout'
+import CheckoutForm from './../Checkout/Checkout'
 // import Checkout from './componets/Checkout/Checkout'
 import { withRouter } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ const Stripe = (props) => {
         <p>{ product.price }</p>
         <img style={{ width: '20%', height: '20%' }} src={ product.pictureUrl } />
       </Fragment>
-      <Checkout />
+      <CheckoutForm product={product} />
     </Elements>
   )
 }

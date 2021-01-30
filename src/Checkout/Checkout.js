@@ -1,30 +1,50 @@
 import React from 'react'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+// import ReactDOM from 'react-dom'
+import StripeCheckout from 'react-stripe-checkout'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { withRouter } from 'react-router-dom'
 
-const CheckoutForm = () => {
-  const stripe = useStripe()
-  const elements = useElements()
+import 'react-toastify/dist/ReactToastify.css'
+// import './styles.css'
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement)
-    })
+toast.configure()
 
-    if (!error) {
-      console.log('Stripe 23 | token generated!', paymentMethod)
-      // send token to backend here
+function CheckoutForm (product) {
+  product = React.useState({
+    name: product.product.name,
+    price: product.product.price,
+    picture: product.product.pictureUrl
+  })
+
+  async function handleToken (token, addresses) {
+    console.log(token)
+    const response = await axios.post(
+      'https://ry7v05l6on.sse.codesandbox.io/checkout',
+      { token, product }
+    )
+    console.log(response)
+    const { status } = response
+    console.log('Response:', response)
+    if (status === 200) {
+      toast('Success! Check email for details', { type: 'success' })
     } else {
-      console.log(error.message)
+      toast('Something went wrong', { type: 'error' })
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-      <CardElement />
-      <button>Pay</button>
-    </form>
+    <div className="container">
+      <StripeCheckout
+        stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+        token={handleToken}
+        amount={product.price * 100}
+        name={product.name}
+        billingAddress
+        shippingAddress
+      />
+    </div>
   )
 }
-export default CheckoutForm
+
+export default withRouter(CheckoutForm)
