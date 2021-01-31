@@ -22,7 +22,7 @@ const unAuthProductCard = products.map(product => (
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>{product.category}</Card.Text>
-        <Card.Title>{product.price}</Card.Title>
+        <Card.Title>${product.price}</Card.Title>
       </Card.Body>
       <Card.Footer>
         <p>Log in to purchase</p>

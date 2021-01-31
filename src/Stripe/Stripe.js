@@ -17,8 +17,8 @@ const Stripe = (props) => {
         <h2>{ product.name }</h2>
         <p>{ product.price }</p>
         <img className='checkout-img' src={ product.pictureUrl } />
+        <CheckoutForm product={product} />
       </Fragment>
-      <CheckoutForm product={product} />
     </Elements>
   )
 }
