@@ -4,6 +4,7 @@ import StripeCheckout from 'react-stripe-checkout'
 // import axios from 'axios'
 import { toast } from 'react-toastify'
 import { withRouter } from 'react-router-dom'
+import apiUrl from '../apiConfig'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -18,7 +19,7 @@ function CheckoutForm (product) {
     const headers = {
       'Content-Type': 'application/json'
     }
-    return fetch('http://localhost:8080/payment', {
+    return fetch(`${apiUrl}/payment`, {
       method: 'POST',
       headers,
       body: JSON.stringify(body)
