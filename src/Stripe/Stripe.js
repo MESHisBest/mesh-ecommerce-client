@@ -14,8 +14,8 @@ const Stripe = (props) => {
   return (
     <Elements className='checkout-form' stripe={stripeTestPromise}>
       <Fragment>
-        <h2>{ product.name }</h2>
-        <p>{ product.price }</p>
+        <h4>{ product.name }</h4>
+        <h4>${ product.price }</h4>
         <img className='checkout-img' src={ product.pictureUrl } />
         <CheckoutForm product={product} />
       </Fragment>
