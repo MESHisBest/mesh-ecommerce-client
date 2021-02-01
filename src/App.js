@@ -9,7 +9,14 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-
+// import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
+import UnAuthProducts from './components/AllProducts/UnAuthProductCard'
+import AuthProducts from './components/AllProducts/AuthProductCard'
+import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
+import CarouselProducts from './components/AllProducts/CarouselProducts'
+// import CreatePurchase from './components/CreatePurchase/CreatePurchase'
+// import Stripe from 'stripe'
+import Stripe from './Stripe/Stripe'
 class App extends Component {
   constructor (props) {
     super(props)
@@ -52,7 +59,7 @@ class App extends Component {
             deleteAlert={this.deleteAlert}
           />
         ))}
-        <main className="container">
+        <main>
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -65,7 +72,31 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
+
+          <AuthenticatedRoute user={user} exact path='/purchases' render={() => (
+            <PurchaseIndex msgAlert={this.msgAlert} user={user} />
+          )} />
         </main>
+        {/* Show all Products */}
+        <section className='green'>
+          <Route exact path='/' render={() => (
+            <Fragment>
+              <CarouselProducts />
+              <UnAuthProducts />
+            </Fragment>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/auth-home' render={() => (
+            <Fragment>
+              <CarouselProducts />
+              <AuthProducts user={user} />
+            </Fragment>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/create-purchase' render={() => (
+            <Fragment>
+              <Stripe user={user} />
+            </Fragment>
+          )} />
+        </section>
       </Fragment>
     )
   }
