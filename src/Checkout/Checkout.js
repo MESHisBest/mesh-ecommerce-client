@@ -27,7 +27,7 @@ function CheckoutForm (product) {
         console.log('response ', response)
         const { status } = response
         console.log('Status ', status)
-        toast('Success! Check email for details', { type: 'success' })
+        toast('Success! View your purchase in My Orders', { type: 'success' })
       })
       .catch(error => {
         console.log(error)
