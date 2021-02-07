@@ -17,8 +17,17 @@ function CheckoutForm (product) {
       product
     }
     const headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }
+
+    const newResourceData = {
+      product: null,
+      productId: null,
+      price: null,
+      pictureUrl: null
+    }
+
     return fetch(`${apiUrl}/payment`, {
       method: 'POST',
       headers,
@@ -26,30 +35,23 @@ function CheckoutForm (product) {
     })
       .then(response => {
         console.log('response ', response)
+        newResourceData.product = response.product
+        newResourceData.productId = response.id
+        newResourceData.price = response.price
+        newResourceData.pictureUrl = response.pictureUrl
         const { status } = response
         console.log('Status ', status)
         toast('Success! View your purchase in My Orders', { type: 'success' })
       })
+      .then(fetch(`${apiUrl}/purchases`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(body)
+      }))
       .catch(error => {
         console.log(error)
       })
   }
-
-  // async function handleToken (token) {
-  //   console.log(token)
-  //   const response = await axios.post(
-  //     'https://ry7v05l6on.sse.codesandbox.io/checkout',
-  //     { token, product }
-  //   )
-  //   console.log(response)
-  //   const { status } = response.data
-  //   console.log('Response:', response.data)
-  //   if (status === 'success') {
-  //     toast('Success! Check email for details', { type: 'success' })
-  //   } else {
-  //     toast('Something went wrong', { type: 'error' })
-  //   }
-  // }
 
   return (
     <div className="checkout-container">
