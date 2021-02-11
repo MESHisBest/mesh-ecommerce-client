@@ -7,22 +7,22 @@ export const purchaseIndex = user => {
     // Add an authorization header
     headers: {
       // we need the user, so we have access to their token
-      'Authorization': `Token token=${user.token}`
+      'Authorization': `Bearer ${user.token}`
     }
   })
 }
 
-export const purchaseCreate = (purchase, user) => {
+export const purchaseCreate = (product, user) => {
   return axios({
     url: apiUrl + '/purchases',
     method: 'POST',
     // Add an authorization header
     headers: {
       // we need the user, so we have access to their token
-      'Authorization': `Token token=${user.token}`
+      'Authorization': `Bearer ${user.token}`
     },
     // send the purchase object as our data for creating a purchase
-    data: { purchase }
+    data: { product }
   })
 }
 // get a single purchase

@@ -5,49 +5,40 @@ import StripeCheckout from 'react-stripe-checkout'
 import { toast } from 'react-toastify'
 import { withRouter } from 'react-router-dom'
 import apiUrl from '../apiConfig'
+// import { purchaseCreate } from './../api/purchases'
 
 import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure()
 
-function CheckoutForm (product) {
-  const handleToken = token => {
+function CheckoutForm (props) {
+  const { product, user } = props
+
+  // stripe token here
+
+  const handleToken = stripeToken => {
     const body = {
-      token,
+      stripeToken,
       product
     }
     const headers = {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${user.token}`
     }
 
-    const newResourceData = {
-      product: null,
-      productId: null,
-      price: null,
-      pictureUrl: null
-    }
-
-    return fetch(`${apiUrl}/payment`, {
+    return fetch(`${apiUrl}/purchases`, {
       method: 'POST',
       headers,
       body: JSON.stringify(body)
     })
       .then(response => {
-        console.log('response ', response)
-        newResourceData.product = response.product
-        newResourceData.productId = response.id
-        newResourceData.price = response.price
-        newResourceData.pictureUrl = response.pictureUrl
         const { status } = response
-        console.log('Status ', status)
-        toast('Success! View your purchase in My Orders', { type: 'success' })
+        if (status === 201) {
+          toast('Success! View your purchase in My Orders', { type: 'success' })
+        } else {
+          toast('Failed to Purchase!', { type: 'failed' })
+        }
       })
-      .then(fetch(`${apiUrl}/purchases`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(body)
-      }))
       .catch(error => {
         console.log(error)
       })
@@ -58,7 +49,7 @@ function CheckoutForm (product) {
       <StripeCheckout
         stripeKey="pk_test_51IF7lSC1DE44tNVIpsZ91JGlVyJ9htoV0OvzfS08SBeOpWmQTf4j22tPOXbJdCCG28dZCmXIrFF13PySFKEVYGfe00KrsTvyZs"
         token={handleToken}
-        amount={product.product.price * 100}>
+        amount={product.price * 100}>
       </StripeCheckout>
     </div>
   )
