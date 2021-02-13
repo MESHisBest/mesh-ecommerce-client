@@ -28,13 +28,14 @@ class PurchaseCreate extends Component {
 
   handleClick = event => {
     // event.preventDefault()
-    const { user } = this.props
-    const { purchase } = this.state
+    const { user, product } = this.props
+    // const { purchase } = this.state
     // create a purchase, pass it the purchase data and the user for its token
-    purchaseCreate(purchase, user)
+    console.log('product here? ', product)
+    purchaseCreate(product, user)
       // set the createdId to the id of the purchase we just created
       .then(res => {
-        this.setState({ purchase: res.data.product, createdId: res.data.product.id })
+        this.setState({ purchase: res.data.purchase, createdId: res.data.purchase.id })
         // pass the response to the next .then so we can show the title
         return res
       })
