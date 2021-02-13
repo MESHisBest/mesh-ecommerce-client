@@ -12,7 +12,7 @@ export const purchaseIndex = user => {
   })
 }
 
-export const purchaseCreate = (product, user) => {
+export const purchaseCreate = (purchase, user) => {
   return axios({
     url: apiUrl + '/purchases',
     method: 'POST',
@@ -22,7 +22,7 @@ export const purchaseCreate = (product, user) => {
       'Authorization': `Bearer ${user.token}`
     },
     // send the purchase object as our data for creating a purchase
-    data: { product }
+    data: { purchase }
   })
 }
 // get a single purchase

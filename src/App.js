@@ -93,7 +93,7 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/create-purchase' render={() => (
             <Fragment>
-              <Stripe user={user} />
+              <Stripe msgAlert={this.msgAlert} user={user} />
             </Fragment>
           )} />
         </section>
