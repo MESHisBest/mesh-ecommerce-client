@@ -19,7 +19,7 @@ function CheckoutForm (props) {
   const handleToken = stripeToken => {
     const body = {
       stripeToken,
-      product
+      purchase: product
     }
     const headers = {
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function CheckoutForm (props) {
         if (status === 201) {
           toast('Success! View your purchase in My Orders', { type: 'success' })
         } else {
-          toast('Failed to Purchase!', { type: 'failed' })
+          toast('Failed to Purchase!', { type: 'fail' })
         }
       })
       .catch(error => {
