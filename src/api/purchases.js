@@ -13,6 +13,7 @@ export const purchaseIndex = user => {
 }
 
 export const purchaseCreate = (purchase, user) => {
+  console.log('purchase ', purchase)
   return axios({
     url: apiUrl + '/purchases',
     method: 'POST',
