@@ -11,14 +11,14 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
 const Stripe = (props) => {
   const { product } = props.location.state
-  const { user } = props
+  const { user, msgAlert } = props
   return (
     <Elements className='checkout-form' stripe={stripeTestPromise}>
       <Fragment>
         <h4>{ product.name }</h4>
         <h4>${ product.price }</h4>
         <img className='checkout-img' src={ product.pictureUrl } />
-        <PurchaseCreate product={product} user={user}/>
+        <PurchaseCreate msgAlert={msgAlert} product={product} user={user}/>
       </Fragment>
     </Elements>
   )

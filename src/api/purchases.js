@@ -1,5 +1,6 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
+
 export const purchaseIndex = user => {
   return axios({
     url: apiUrl + '/purchases',
@@ -13,7 +14,6 @@ export const purchaseIndex = user => {
 }
 
 export const purchaseCreate = (purchase, user) => {
-  console.log('purchase ', purchase)
   return axios({
     url: apiUrl + '/purchases',
     method: 'POST',
@@ -34,29 +34,29 @@ export const purchaseShow = (id, user) => {
     // Add an authorization header
     headers: {
       // we need the user, so we have access to their token
-      'Authorization': `Token token=${user.token}`
+      'Authorization': `Bearer ${user.token}`
     }
   })
 }
 
-// export const purchaseDelete = (id, user) => {
-//   return axios({
-//     url: apiUrl + '/purchases/' + id,
-//     method: 'DELETE',
-//     // Add an authorization header
-//     headers: {
-//       // we need the user, so we have access to their token
-//       'Authorization': `Token token=${user.token}`
-//     }
-//   })
-// }
+export const purchaseDelete = (id, user) => {
+  return axios({
+    url: apiUrl + '/purchases/' + id,
+    method: 'DELETE',
+    // Add an authorization header
+    headers: {
+      // we need the user, so we have access to their token
+      'Authorization': `Bearer ${user.token}`
+    }
+  })
+}
 
 // export const purchaseUpdate = (id, purchase, user) => {
 //   return axios({
 //     url: apiUrl + '/purchases/' + id,
 //     method: 'PATCH',
 //     headers: {
-//       'Authorization': `Token token=${user.token}`
+//       'Authorization': `Bearer ${user.token}`
 //     },
 //     data: { purchase }
 //   })
