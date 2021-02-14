@@ -42,13 +42,16 @@ class PurchasesIndex extends Component {
     }
     const purchasesJsx = purchases.map(purchase => (
       <Link to={`/purchases/${purchase._id}`} key={purchase._id}>
-        <li>
-          {purchase.name}
-        </li>
+        <div style={{ paddingLeft: '2%' }}>
+          <li>
+            {purchase.name}
+          </li>
+        </div>
       </Link>
     ))
     return (
-      <div>
+      <div style={{ paddingTop: '2%', marginLeft: '2%' }}>
+        <h4>List of your purchases below:</h4>
         {purchasesJsx}
       </div>
     )

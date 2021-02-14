@@ -20,22 +20,22 @@ const CarouselProducts = () => {
       <Carousel style={cardContainerLayout}>
         <Carousel.Item>
           <img
-            src={products[0].pictureUrl}
+            src={products[1].pictureUrl}
             style={dblock}
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>{products[0].name}</h3>
+            <h3>{products[1].name}</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
-            src={products[1].pictureUrl}
+            src={products[5].pictureUrl}
             style={dblock}
             alt="Second slide"
           />
           <Carousel.Caption>
-            <h3>{products[1].name}</h3>
+            <h3>{products[5].name}</h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>

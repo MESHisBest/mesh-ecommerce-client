@@ -9,14 +9,16 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-// import PurchaseCreate from './components/PurchaseCreate/PurchaseCreate'
 import UnAuthProducts from './components/AllProducts/UnAuthProductCard'
 import AuthProducts from './components/AllProducts/AuthProductCard'
-import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
+
 import CarouselProducts from './components/AllProducts/CarouselProducts'
-// import CreatePurchase from './components/CreatePurchase/CreatePurchase'
-// import Stripe from 'stripe'
+
+import PurchaseIndex from './components/PurchaseIndex/PurchaseIndex'
+import PurchaseShow from './components/PurchaseShow/PurchaseShow'
+
 import Stripe from './Stripe/Stripe'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -95,6 +97,10 @@ class App extends Component {
             <Fragment>
               <Stripe msgAlert={this.msgAlert} user={user} />
             </Fragment>
+          )} />
+          {/* Get a single purchase | show */}
+          <AuthenticatedRoute user={user} exact path='/purchases/:id' render={() => (
+            <PurchaseShow msgAlert={this.msgAlert} user={user} />
           )} />
         </section>
       </Fragment>
