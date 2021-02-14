@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import CheckoutForm from './../Checkout/Checkout'
+import PurchaseCreate from './../components/PurchaseCreate/PurchaseCreate'
 // import Checkout from './componets/Checkout/Checkout'
 import { withRouter } from 'react-router-dom'
 
@@ -11,13 +11,14 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
 const Stripe = (props) => {
   const { product } = props.location.state
+  const { user, msgAlert } = props
   return (
     <Elements className='checkout-form' stripe={stripeTestPromise}>
       <Fragment>
         <h4>{ product.name }</h4>
         <h4>${ product.price }</h4>
         <img className='checkout-img' src={ product.pictureUrl } />
-        <CheckoutForm product={product} />
+        <PurchaseCreate msgAlert={msgAlert} product={product} user={user}/>
       </Fragment>
     </Elements>
   )

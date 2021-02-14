@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import PurchaseForm from '../PurchaseForm/PurchaseForm'
+
 import { purchaseCreate } from '../../api/purchases'
+import { Redirect, withRouter } from 'react-router-dom'
+import StripeCheckout from 'react-stripe-checkout'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
+
 // make a single purchase
 class PurchaseCreate extends Component {
   constructor (props) {
@@ -10,23 +16,22 @@ class PurchaseCreate extends Component {
     this.state = {
       purchase: {
         name: '',
-        picture_url: ''
+        price: ''
       },
       // createdId will be null, until we successfully create a purchase
       createdId: null
     }
   }
-  handleSubmit = event => {
-    event.preventDefault()
-    const { user, msgAlert } = this.props
-    const { purchase } = this.state
-    // create a movie, pass it the movie data and the user for its token
-    purchaseCreate(purchase, user)
-      // set the createdId to the id of the movie we just created
-      // .then(res => this.setState({ createdId: res.data.movie._id }))
+
+  handleClick = () => {
+    const { user, product, msgAlert } = this.props
+    // const { purchase } = this.state
+    // create a purchase, pass it the purchase data and the user for its token
+    purchaseCreate(product, user)
+      // set the createdId to the id of the purchase we just created
       .then(res => {
-        this.setState({ createdId: res.data.purchase._id })
-        // pass the response to the next .then so we can show the title
+        this.setState({ purchase: res.data.purchase, createdId: res.data.purchase._id })
+        // pass the response to the next .then so we can show the name
         return res
       })
       .then(res => msgAlert({
@@ -42,40 +47,27 @@ class PurchaseCreate extends Component {
         })
       })
   }
-  // when an input changes, update the state that corresponds with the input's name
-  handleChange = event => {
-    // in react, an event is actually a SyntheticEvent
-    // to ensure the properties are not set to null after handleChange is finished
-    // we must call event.persist
-    event.persist()
-    this.setState(state => {
-      // return our state change
-      return {
-        // set the purchase state, to what it used to be (...state.purchase)
-        // but replace the property with `name` to its current `value`
-        // ex. name could be `title` or `director`
-        purchase: { ...state.purchase, [event.target.name]: event.target.value }
-      }
-    })
-  }
+
   render () {
-    // destructure our movie and createdId state
-    const { purchase, createdId } = this.state
-    // if the movie has been created and we set its id
+    const { product } = this.props
+    // destructure our purchase and createdId state
+    const { createdId } = this.state
+    // if the purchase has been created and we set its id
     if (createdId) {
-      // redirect to the movies show page
+      // redirect to the purchases show page
       return <Redirect to={`/purchases/${createdId}`} />
     }
+
     return (
-      <div>
-        <h3>Hello</h3>
-        <PurchaseForm
-          movie={purchase}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+      <div className="checkout-container">
+        <StripeCheckout
+          stripeKey="pk_test_51IF7lSC1DE44tNVIpsZ91JGlVyJ9htoV0OvzfS08SBeOpWmQTf4j22tPOXbJdCCG28dZCmXIrFF13PySFKEVYGfe00KrsTvyZs"
+          token={this.handleClick}
+          amount={product.price * 100}>
+          <button style={{ marginTop: '5%', marginBottom: '5%' }} className='btn btn-primary text-white'>Pay ${product.price}</button>
+        </StripeCheckout>
       </div>
     )
   }
 }
-export default PurchaseCreate
+export default withRouter(PurchaseCreate)

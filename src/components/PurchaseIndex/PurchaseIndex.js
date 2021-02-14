@@ -18,7 +18,6 @@ class PurchasesIndex extends Component {
 
     purchaseIndex(user)
       .then(res => this.setState({ purchases: res.data.purchases }))
-      // .then(res => console.log(res))
       .then(() => msgAlert({
         heading: 'Loaded Purchases Successfully',
         message: 'All purchases retrieved. Click on one to go to its page.',
@@ -43,13 +42,16 @@ class PurchasesIndex extends Component {
     }
     const purchasesJsx = purchases.map(purchase => (
       <Link to={`/purchases/${purchase._id}`} key={purchase._id}>
-        <li>
-          {purchase.name}
-        </li>
+        <div style={{ paddingLeft: '2%' }}>
+          <li>
+            {purchase.name}
+          </li>
+        </div>
       </Link>
     ))
     return (
-      <div>
+      <div style={{ paddingTop: '2%', marginLeft: '2%' }}>
+        <h4>List of your purchases below:</h4>
         {purchasesJsx}
       </div>
     )
